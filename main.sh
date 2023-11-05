@@ -107,25 +107,25 @@ while true ;do
     case $opt in
 
         1)
-            ./src/srv/srv.sh;;
+            ./src/srv/srv.sh ;;
 
         2)
-            ./src/testing/test.sh;;
+            ./src/testing/test.sh ;;
 
         #-----------------------------------------
        
         help)
-            help;;
+            help ;;
 
         exit|3)
             echo -e "[*] Exiting ..... [*]\n"
-            exit 1;;
+            exit 1 ;;
 
         clear)
-            clear;;
+            clear ;;
 
         back)
-            exit 0;;
+            exit 0 ;;
 
         banner)
             banner1 ;;
@@ -136,10 +136,10 @@ while true ;do
             echo "" ;;
 
         ping)
-            ping1;;
+            ping1 ;;
         
         ip)
-            ip1;;
+            ip1 ;;
 
         *)
             echo -e "[*] Erro no programa! [*]\n"
