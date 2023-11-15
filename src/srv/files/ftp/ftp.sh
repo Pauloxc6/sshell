@@ -32,13 +32,13 @@ function vs() {
     apt install vsftpd -y
 
     #config
-    echo -e "Config: \n"
-    echo -e "1. Manual \n"
-    echo -e "2. Auto \n"
+    echo -e "Config:"
+    echo -e "1. Manual"
+    echo -e "2. Auto"
 
-    read -p "Opt: " ma
+    read -p "[-] Opt: " ma
 
-    case ma in
+    case $ma in
         1)
             echo -e "[*] Create : Group -> ftpusers [*]"
             groupadd ftpusers
@@ -100,22 +100,22 @@ function vs() {
 function pro() {
     #install
     apt update && apt upgrade -y
-    apt install vsftpd -y
+    apt install proftpd -y
 
     #config
-    echo -e "Config: \n"
-    echo -e "1. Manual \n"
-    echo -e "2. Auto \n"
+    echo -e "Config: "
+    echo -e "1. Manual"
+    echo -e "2. Auto"
 
-    read -p "Opt: " ma
+    read -p "[-] Opt: " ma
 
-    case ma in
+    case $ma in
         1)
             exit 0;;
         2)
             exit 0;;
         *)
-            echo -e "Error Config"
+            echo -e "[*] Error : Escolha uma opção acima [*]"
     esac
 }
 
@@ -144,16 +144,16 @@ while true; do
     #----------------------------------
     # Menu
     #----------------------------------
-    echo -e "Install: \n"
-    echo -e "1. vsftpd \n"
-    echo -e "2. proftpd \n"
+    echo -e "\nInstall: "
+    echo -e "1. vsftpd"
+    echo -e "2. proftpd"
     echo -e "3. exit "
 
-    echo -e "\n"
+    echo -e ""
 
     read -p "root@server:~/sshell/src/srv/files/ftp/# " server
 
-    case server in
+    case $server in
 
         help)
             help;;

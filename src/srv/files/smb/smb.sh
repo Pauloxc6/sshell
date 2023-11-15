@@ -31,13 +31,13 @@ function ssmbd() {
     apt install samba -y
 
     #config
-    echo -e "Config: \n"
-    echo -e "1. Manual \n"
-    echo -e "2. Auto \n"
+    echo -e "Config: "
+    echo -e "1. Manual"
+    echo -e "2. Auto"
 
-    read -p "Opt: " ma
+    read -p "[-] Opt: " ma
 
-    case ma in
+    case $ma in
         1)
             cd /home
             echo -e "[*] Create : User -> smbuser [*]"
@@ -66,7 +66,7 @@ function ssmbd() {
             
             testparm
             
-            echo -e "[*] Exit[*]"
+            echo -e "[*] Exit [*]"
             exit 0 ;;
         2)
             cd /home
@@ -95,11 +95,11 @@ function ssmbd() {
            
             testparm
             
-            echo -e "[*] Exit[*]"
+            echo -e "[*] Exit [*]"
             exit 0 ;;
 
         *)
-            echo -e "Error Config"
+            echo -e "[*] Error : Escolha uma opção acima [*]"
     esac
 
     #run
@@ -116,17 +116,17 @@ while true; do
     #----------------------------------
     # Menu
     #----------------------------------
-    echo -e "Install: \n"
-    echo -e "1. samba/smb \n"
-    echo -e "2. exit \n"
+    echo -e "Install:"
+    echo -e "1. samba/smb"
+    echo -e "2. exit"
 
-    echo -e "\n"
+    echo -e ""
 
-    read -p "Server: " server
+    read -p "root@server:~/sshell/src/srv/files/smb/# " server
 
-    case server in
+    case $server in
         1)
-            vs
+            ssmbd
             exit 0;;
         2)
             echo -e "[*] Exit [*]"

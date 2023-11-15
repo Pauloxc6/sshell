@@ -147,19 +147,19 @@ while true; do
         #----------------------------------
 
         1)
-            ./srv/databases/db.sh    ;;
+            ./src/srv/databases/db.sh    ;;
         2)
-            ./srv/dhcp/dhcp.sh       ;;
+            ./src/srv/dhcp/dhcp.sh       ;;
         3)
-            ./srv/email/email.sh     ;;
+            ./src/srv/email/email.sh     ;;
         4)
-            ./srv/files/file.sh      ;;
+            ./src/srv/files/files.sh      ;;
         5)
-            ./srv/login/login.sh     ;;
+            ./src/srv/login/login.sh     ;;
         6)
-            ./srv/printer/printer.sh ;;
+            ./src/srv/printer/printer.sh ;;
         7)
-            ./srv/vpn/vpn.sh         ;;
+            ./src/srv/vpn/vpn.sh         ;;
 
         #------------------------------------------
         *)

@@ -13,7 +13,7 @@ fi
 #------------------------------------
 # Banner
 #------------------------------------
-figlet FTP Server
+figlet DHCP Server
 echo -e "By: @pauloxc6 | \t $(date)"
 
 #-----------------------------------
@@ -31,50 +31,67 @@ function isc() {
     apt install isc-dhcp-server -y
 
     #config
-    echo -e "Config: \n"
-    echo -e "1. Manual \n"
-    echo -e "2. Auto \n"
+    echo -e "Config: "
+    echo -e "1. Manual"
+    echo -e "2. Auto"
 
-    read -p "Opt: " ma
+    read -p "[-] Opt: " ma
 
-    case ma in
+    case $ma in
         1)
             echo -e "[*] Create : IP Forward [*]"
             echo 1 > /proc/sys/net/ipv4/ip_forward
+
             echo -e "[*] Create : Firewall Rules [*]"
             iptables -t nat -a POSTROUTING -e wlan0 -j MASQUERADE
+
             cd /etc/default/
             echo -e "[*] Config : /etc/default/isc-dhcp-server [*]"
             nano isc-dhcp-server
             cd /etc/dhcp/
-            echo -e "[*] Config : /etc/dhcp/dhcp/dhcp.conf [*]"
+
+            echo -e "[*] Config : /etc/dhcp/dhcpd.conf [*]"
             nano dhcpd.conf
+
             grep -v "^#" dhcpd.conf | sed '/^$/d' > dhcp
+            
             nano dhcp
+
             rm dhcpd.conf && mv dhcp dhcpd.conf
+            
             echo -e "[*] Init Server [*]"
+            
             service isc-dhcp-server start
+            
             echo -e "[*] Exit[*]"
             exit 0 ;;
         2)
             echo -e "[*] Create : IP Forward [*]"
             echo 1 > /proc/sys/net/ipv4/ip_forward
+
             echo -e "[*] Create : Firewall Rules [*]"
             iptables -t nat -a POSTROUTING -e wlan0 -j MASQUERADE
+
             cd /etc/default/
             echo -e "[*] Config : /etc/default/isc-dhcp-server [*]"
             nano isc-dhcp-server
+            
+            echo -e "[*] Config : /etc/dhcp/dhcp.conf [*]"
             cd /etc/dhcp/
-            echo -e "[*] Config : /etc/dhcp/dhcp/dhcp.conf [*]"
-            echo -e "option domain-name-servers 8.8.8.8, 8.8.4.4;\n\ndefault-lease-time 600;\nmax-lease-time 7200;\n\nddns-update-style none;\n\nsubnet 192.168.0.0 netmask 255.255.255.0 {\n\trange 192.168.0.10 192.168.0.30;\n\toption broadcast-address 192.168.0.255;\n\toption routers 192.168.0.1;\n}"
+            grep -v "^#" dhcpd.conf | sed '/^$/d' > dhcp
+
+            echo -e "option domain-name-servers 8.8.8.8, 8.8.4.4;\n\ndefault-lease-time 600;\nmax-lease-time 7200;\n\nddns-update-style none;\n\nsubnet 192.168.0.0 netmask 255.255.255.0 {\n\trange 192.168.0.10 192.168.0.30;\n\toption broadcast-address 192.168.0.255;\n\toption routers 192.168.0.1;\n}" > dhcp
+            
             rm dhcpd.conf && mv dhcp dhcpd.conf
+            
             echo -e "[*] Init Server [*]"
             service isc-dhcp-server start
+            
             echo -e "[*] Exit[*]"
             exit 0 ;;
 
         *)
-            echo -e "Error Config"
+            echo -e "[*] Error : Escolha uma opção acima [*]"
     esac
 
     #run
@@ -90,20 +107,20 @@ while true; do
     #----------------------------------
     # Menu
     #----------------------------------
-    echo -e "Install: \n"
-    echo -e "1. isc-dhcp-server \n"
-    echo -e "3. exit "
+    echo -e "\nInstall: "
+    echo -e "1. isc-dhcp-server "
+    echo -e "2. exit"
 
-    echo -e "\n"
+    echo ""
 
     read -p "Server: " server
 
-    case server in
+    case $server in
         1)
             isc
             exit 0;;
         2)
-            echo -e "[*] Exit [*]"
+            echo -e "[*] Exit ..... [*]"
             exit 0 ;;
     esac
 done
