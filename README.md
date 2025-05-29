@@ -1,4 +1,4 @@
-# [+] sshell [+]
+# [+] sshell [+] [Descontinuada]
 
 Esse ferramenta foi cria para automatizar o processo de instalação e configuração de servidores em ambiente linux. Ele foi desevolvida para profissionais de redes, para ganho de tempo e facil utilização
 
